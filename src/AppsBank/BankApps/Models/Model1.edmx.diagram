@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f1aa73f238694bd49786b7b2f9e189fa" Name="Diagram1">
+        <EntityTypeShape EntityType="Brank_InfomationModel.BranchInfo" Width="1.5" PointX="11.125" PointY="1.5" />
+        <EntityTypeShape EntityType="Brank_InfomationModel.DesignationInfo" Width="1.5" PointX="5.875" PointY="5.125" />
+        <EntityTypeShape EntityType="Brank_InfomationModel.GenderInfo" Width="1.5" PointX="4.125" PointY="1.75" />
+        <EntityTypeShape EntityType="Brank_InfomationModel.BankInfo" Width="1.5" PointX="6.375" PointY="2" />
+        <EntityTypeShape EntityType="Brank_InfomationModel.EmployeeInfo" Width="1.5" PointX="8.625" PointY="0.5" />
+        <AssociationConnector Association="Brank_InfomationModel.FK_EmployeeInfo_BankInfo" />
+        <AssociationConnector Association="Brank_InfomationModel.FK_EmployeeInfo_BranchInfo" />
+        <AssociationConnector Association="Brank_InfomationModel.FK_EmployeeInfo_DesignationInfo" />
+        <AssociationConnector Association="Brank_InfomationModel.FK_EmployeeInfo_GenderInfo" />
+        <EntityTypeShape EntityType="Brank_InfomationModel.Rpt_EmployeeInfo" Width="1.5" PointX="0.75" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

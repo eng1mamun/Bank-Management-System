@@ -1,0 +1,233 @@
+﻿@using BankApps.Models;
+@{
+    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "EmployeeEntry";
+    Brank_InfomationEntities db = new Brank_InfomationEntities();
+}
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/eggplant/jquery-ui.css" rel="stylesheet" />
+
+<h2 style="text-align:center">Employee Entry</h2>
+<form action="/BA/EmployeeEntry" enctype="multipart/form-data" method="post">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <input type="hidden" name="EmployeeId" id="EmployeeId" value="@Model.EmployeeId" />
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-2 alert alert-info">
+                        <label class="form-control">Employee Name</label>
+                        <input type="text" name="EmpName" id="EmpName" value="@Model.EmpName" placeholder="Enter Employee Name" autocomplete="off" />
+
+                    </div>
+                    <div class="col-md-4 col-md-offset-2 alert alert-info">
+                        <label class="form-control">Employee Bank</label>
+                        <select type="text" name="BankId" id="BankId">
+                            <option value="0">Select a Bank..!!</option>
+                            @foreach (var item in db.BankInfoes)
+                            {
+                                if (Model.BankId == item.BankId)
+                                {
+                                    <option value="@item.BankId" selected>@item.BankName</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.BankId">@item.BankName</option>
+                                }
+
+                            }
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-4 col-md-offset-2 alert alert-info">
+                        <label class="form-control">Employee Branch</label>
+                        <select type="text" name="BranchId" id="BranchId">
+                            <option value="0">Select a Branch..!!</option>
+                            @foreach (var item in db.BranchInfoes)
+                            {
+                                if (Model.BranchId == item.BranchId)
+                                {
+                                    <option value="@item.BranchId" selected>@item.BranchName</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.BranchId">@item.BranchName</option>
+                                }
+
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4 col-md-offset-2 alert alert-info">
+                        <label class="form-control">Employee Designation</label>
+                        <select type="text" name="DesignationId" id="DesignationId">
+                            <option value="0">Select a Designation..!!</option>
+                            @foreach (var item in db.DesignationInfoes)
+                            {
+                                if (Model.DesignationId == item.DesignationId)
+                                {
+                                    <option value="@item.DesignationId" selected>@item.DesName</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.DesignationId">@item.DesName</option>
+                                }
+
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4 col-md-offset-2 alert alert-info">
+                        <label class="form-control">Employee Gender</label>
+                        <select type="text" name="GenderId" id="GenderId">
+                            <option value="0">Select a Gender..!!</option>
+                            @foreach (var item in db.GenderInfoes)
+                            {
+                                if (Model.GenderId == item.GenderId)
+                                {
+                                    <option value="@item.GenderId" selected>@item.GenName</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.GenderId">@item.GenName</option>
+                                }
+
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4 col-md-offset-2 alert alert-info">
+                        <label class="form-control">Age</label>
+                        <input type="text" name="Age" id="Age" value="@Model.Age" placeholder="Enter Employee Age" autocomplete="off" />
+
+                    </div>
+                    <div class="col-md-4 col-md-offset-2 alert alert-info">
+                        <label class="form-control">Salary</label>
+                        <input type="text" name="Salary" id="Salary" value="@Model.Salary" placeholder="Enter Salary" autocomplete="off" />
+
+                    </div>
+                    <div class="col-md-4 col-md-offset-2 alert alert-info">
+                        <label class="form-control">Image</label>
+                        <input type="file" name="Image" id="Image"/>
+
+                    </div>
+                    <div class="col-md-4 col-md-offset-2 alert alert-info">
+                        <label class="form-control">Bank joining Date</label>
+                        <input type="text" name="Date" id="Date" value="@Model.Date" placeholder="Enter Date" autocomplete="off" />
+
+                    </div>
+                    <div class="col-md-4 col-md-offset-2 alert alert-info">
+                        <label class="form-control">Role</label>
+                        <input type="text" name="Role" id="Role" value="@Model.Role" placeholder="Enter Role" autocomplete="off" />
+
+                    </div>
+
+                    <div class="col-md-4 col-md-offset-2 alert alert-info">
+                        <label class="form-control">UserName</label>
+                        <input type="text" name="UName" id="UName" value="@Model.UName" placeholder="Enter UserName" autocomplete="off" />
+
+                    </div>
+                    <div class="col-md-4 col-md-offset-2 alert alert-info">
+                        <label class="form-control">Password</label>
+                        <input type="password" name="Password" id="Password" value="@Model.Password" placeholder="***" autocomplete="off" />
+
+                    </div>
+                </div>
+                <br />
+                <br />
+                <br />
+                <div style="text-align:center">
+                    <input style="text-align:center" type="submit" value="Save" class="btn btn-danger" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+<form>
+    <div class="form-horizontal">
+        <div class="form-group">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Bank</th>
+                    <th>Branch</th>
+                    <th>Designation</th>
+                    <th>Gender</th>
+                    <th>Age</th>
+                    <th>Salary</th>
+                    <th>Image</th>
+                    <th>Date</th>
+                    <th>Role</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    
+                </tr>
+                @foreach (var item in db.EmployeeInfoes)
+                {
+                    <tr>
+                        <td>@item.EmpName</td>
+                        @foreach (var item2 in db.BankInfoes)
+                        {
+                            if (item2.BankId == item.BankId)
+                            {
+                                <td>@item2.BankName</td>
+                            }
+
+                        }
+                      
+                        @foreach (var item3 in db.BranchInfoes)
+                        {
+                            if (item3.BranchId == item.BranchId)
+                            {
+                                <td>@item3.BranchName</td>
+                            }
+
+                        }
+
+                        @foreach (var item4 in db.DesignationInfoes)
+                        {
+                            if (item4.DesignationId == item.DesignationId)
+                            {
+                                <td>@item4.DesName</td>
+                            }
+
+                        }
+
+                   
+                        @foreach (var item4 in db.GenderInfoes)
+                        {
+                            if (item4.GenderId == item.GenderId)
+                            {
+                                <td>@item4.GenName</td>
+                            }
+
+                        }
+                        
+                        <td>@item.Age</td>
+                        <td>@item.Salary</td>
+                        <td>@item.Image</td>
+                        <td>@item.Date</td>
+                        <td>@item.Role</td>
+                       <td><a href="/BA/EmployeeEntry?Id=@item.EmployeeId">Edit</a></td> 
+                        <td><a href="/BA/delEmployeeEntry?Id=@item.EmployeeId">Delete</a></td>
+                        </tr>
+                }
+</table>
+        </div>
+    </div>
+</form>
+@section Scripts{
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+   <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#Date').datepicker({
+                changerYear: true,
+                changerMonth: true,
+                dateFormat: 'dd/mm/yy',
+                altField: $(this).val(),
+                yearRange:'-150:+0'
+                });
+        });
+       
+    </script>
+    
+    }

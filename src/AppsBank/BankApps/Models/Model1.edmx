@@ -1,0 +1,400 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Brank_InfomationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BankInfo">
+          <Key>
+            <PropertyRef Name="BankId" />
+          </Key>
+          <Property Name="BankId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="150" />
+          <Property Name="BankCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="BranchInfo">
+          <Key>
+            <PropertyRef Name="BranchId" />
+          </Key>
+          <Property Name="BranchId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BranchName" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="DesignationInfo">
+          <Key>
+            <PropertyRef Name="DesignationId" />
+          </Key>
+          <Property Name="DesignationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DesName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EmployeeInfo">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BankId" Type="int" />
+          <Property Name="BranchId" Type="int" />
+          <Property Name="DesignationId" Type="int" />
+          <Property Name="GenderId" Type="int" />
+          <Property Name="Age" Type="nvarchar" MaxLength="50" />
+          <Property Name="Salary" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="nvarchar(max)" />
+          <Property Name="Role" Type="nvarchar" MaxLength="50" />
+          <Property Name="UName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GenderInfo">
+          <Key>
+            <PropertyRef Name="GenderId" />
+          </Key>
+          <Property Name="GenderId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Rpt_EmployeeInfo">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmpName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BankName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BranchName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DesignationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="GenderName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Age" Type="nvarchar" MaxLength="50" />
+          <Property Name="Salary" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="Image" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_EmployeeInfo_BankInfo">
+          <End Role="BankInfo" Type="Self.BankInfo" Multiplicity="0..1" />
+          <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankInfo">
+              <PropertyRef Name="BankId" />
+            </Principal>
+            <Dependent Role="EmployeeInfo">
+              <PropertyRef Name="BankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeInfo_BranchInfo">
+          <End Role="BranchInfo" Type="Self.BranchInfo" Multiplicity="0..1" />
+          <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BranchInfo">
+              <PropertyRef Name="BranchId" />
+            </Principal>
+            <Dependent Role="EmployeeInfo">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeInfo_DesignationInfo">
+          <End Role="DesignationInfo" Type="Self.DesignationInfo" Multiplicity="0..1" />
+          <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DesignationInfo">
+              <PropertyRef Name="DesignationId" />
+            </Principal>
+            <Dependent Role="EmployeeInfo">
+              <PropertyRef Name="DesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeInfo_GenderInfo">
+          <End Role="GenderInfo" Type="Self.GenderInfo" Multiplicity="0..1" />
+          <End Role="EmployeeInfo" Type="Self.EmployeeInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenderInfo">
+              <PropertyRef Name="GenderId" />
+            </Principal>
+            <Dependent Role="EmployeeInfo">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Brank_InfomationModelStoreContainer">
+          <EntitySet Name="BankInfo" EntityType="Self.BankInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BranchInfo" EntityType="Self.BranchInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DesignationInfo" EntityType="Self.DesignationInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeeInfo" EntityType="Self.EmployeeInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GenderInfo" EntityType="Self.GenderInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rpt_EmployeeInfo" EntityType="Self.Rpt_EmployeeInfo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_EmployeeInfo_BankInfo" Association="Self.FK_EmployeeInfo_BankInfo">
+            <End Role="BankInfo" EntitySet="BankInfo" />
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeInfo_BranchInfo" Association="Self.FK_EmployeeInfo_BranchInfo">
+            <End Role="BranchInfo" EntitySet="BranchInfo" />
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeInfo_DesignationInfo" Association="Self.FK_EmployeeInfo_DesignationInfo">
+            <End Role="DesignationInfo" EntitySet="DesignationInfo" />
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeInfo_GenderInfo" Association="Self.FK_EmployeeInfo_GenderInfo">
+            <End Role="GenderInfo" EntitySet="GenderInfo" />
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Brank_InfomationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Brank_InfomationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BranchInfoes" EntityType="Brank_InfomationModel.BranchInfo" />
+          <EntitySet Name="DesignationInfoes" EntityType="Brank_InfomationModel.DesignationInfo" />
+          <EntitySet Name="GenderInfoes" EntityType="Brank_InfomationModel.GenderInfo" />
+          <EntitySet Name="BankInfoes" EntityType="Brank_InfomationModel.BankInfo" />
+          <EntitySet Name="EmployeeInfoes" EntityType="Brank_InfomationModel.EmployeeInfo" />
+          <AssociationSet Name="FK_EmployeeInfo_BankInfo" Association="Brank_InfomationModel.FK_EmployeeInfo_BankInfo">
+            <End Role="BankInfo" EntitySet="BankInfoes" />
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeInfo_BranchInfo" Association="Brank_InfomationModel.FK_EmployeeInfo_BranchInfo">
+            <End Role="BranchInfo" EntitySet="BranchInfoes" />
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeInfo_DesignationInfo" Association="Brank_InfomationModel.FK_EmployeeInfo_DesignationInfo">
+            <End Role="DesignationInfo" EntitySet="DesignationInfoes" />
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeeInfo_GenderInfo" Association="Brank_InfomationModel.FK_EmployeeInfo_GenderInfo">
+            <End Role="GenderInfo" EntitySet="GenderInfoes" />
+            <End Role="EmployeeInfo" EntitySet="EmployeeInfoes" />
+          </AssociationSet>
+          <EntitySet Name="Rpt_EmployeeInfo" EntityType="Brank_InfomationModel.Rpt_EmployeeInfo" />
+          </EntityContainer>
+        <EntityType Name="BranchInfo">
+          <Key>
+            <PropertyRef Name="BranchId" />
+          </Key>
+          <Property Name="BranchId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BranchName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmployeeInfoes" Relationship="Brank_InfomationModel.FK_EmployeeInfo_BranchInfo" FromRole="BranchInfo" ToRole="EmployeeInfo" />
+        </EntityType>
+        <EntityType Name="DesignationInfo">
+          <Key>
+            <PropertyRef Name="DesignationId" />
+          </Key>
+          <Property Name="DesignationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DesName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmployeeInfoes" Relationship="Brank_InfomationModel.FK_EmployeeInfo_DesignationInfo" FromRole="DesignationInfo" ToRole="EmployeeInfo" />
+        </EntityType>
+        <EntityType Name="GenderInfo">
+          <Key>
+            <PropertyRef Name="GenderId" />
+          </Key>
+          <Property Name="GenderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmployeeInfoes" Relationship="Brank_InfomationModel.FK_EmployeeInfo_GenderInfo" FromRole="GenderInfo" ToRole="EmployeeInfo" />
+        </EntityType>
+        <EntityType Name="BankInfo">
+          <Key>
+            <PropertyRef Name="BankId" />
+          </Key>
+          <Property Name="BankId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BankName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="BankCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EmployeeInfoes" Relationship="Brank_InfomationModel.FK_EmployeeInfo_BankInfo" FromRole="BankInfo" ToRole="EmployeeInfo" />
+        </EntityType>
+        <EntityType Name="EmployeeInfo">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BankId" Type="Int32" />
+          <Property Name="BranchId" Type="Int32" />
+          <Property Name="DesignationId" Type="Int32" />
+          <Property Name="GenderId" Type="Int32" />
+          <Property Name="Age" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BankInfo" Relationship="Brank_InfomationModel.FK_EmployeeInfo_BankInfo" FromRole="EmployeeInfo" ToRole="BankInfo" />
+          <NavigationProperty Name="BranchInfo" Relationship="Brank_InfomationModel.FK_EmployeeInfo_BranchInfo" FromRole="EmployeeInfo" ToRole="BranchInfo" />
+          <NavigationProperty Name="DesignationInfo" Relationship="Brank_InfomationModel.FK_EmployeeInfo_DesignationInfo" FromRole="EmployeeInfo" ToRole="DesignationInfo" />
+          <NavigationProperty Name="GenderInfo" Relationship="Brank_InfomationModel.FK_EmployeeInfo_GenderInfo" FromRole="EmployeeInfo" ToRole="GenderInfo" />
+        </EntityType>
+        <Association Name="FK_EmployeeInfo_BankInfo">
+          <End Type="Brank_InfomationModel.BankInfo" Role="BankInfo" Multiplicity="0..1" />
+          <End Type="Brank_InfomationModel.EmployeeInfo" Role="EmployeeInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BankInfo">
+              <PropertyRef Name="BankId" />
+            </Principal>
+            <Dependent Role="EmployeeInfo">
+              <PropertyRef Name="BankId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeInfo_BranchInfo">
+          <End Type="Brank_InfomationModel.BranchInfo" Role="BranchInfo" Multiplicity="0..1" />
+          <End Type="Brank_InfomationModel.EmployeeInfo" Role="EmployeeInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BranchInfo">
+              <PropertyRef Name="BranchId" />
+            </Principal>
+            <Dependent Role="EmployeeInfo">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeInfo_DesignationInfo">
+          <End Type="Brank_InfomationModel.DesignationInfo" Role="DesignationInfo" Multiplicity="0..1" />
+          <End Type="Brank_InfomationModel.EmployeeInfo" Role="EmployeeInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DesignationInfo">
+              <PropertyRef Name="DesignationId" />
+            </Principal>
+            <Dependent Role="EmployeeInfo">
+              <PropertyRef Name="DesignationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeeInfo_GenderInfo">
+          <End Type="Brank_InfomationModel.GenderInfo" Role="GenderInfo" Multiplicity="0..1" />
+          <End Type="Brank_InfomationModel.EmployeeInfo" Role="EmployeeInfo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenderInfo">
+              <PropertyRef Name="GenderId" />
+            </Principal>
+            <Dependent Role="EmployeeInfo">
+              <PropertyRef Name="GenderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Rpt_EmployeeInfo">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmpName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BranchName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DesignationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GenderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Salary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Brank_InfomationModelStoreContainer" CdmEntityContainer="Brank_InfomationEntities">
+          <EntitySetMapping Name="BranchInfoes">
+            <EntityTypeMapping TypeName="Brank_InfomationModel.BranchInfo">
+              <MappingFragment StoreEntitySet="BranchInfo">
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DesignationInfoes">
+            <EntityTypeMapping TypeName="Brank_InfomationModel.DesignationInfo">
+              <MappingFragment StoreEntitySet="DesignationInfo">
+                <ScalarProperty Name="DesName" ColumnName="DesName" />
+                <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GenderInfoes">
+            <EntityTypeMapping TypeName="Brank_InfomationModel.GenderInfo">
+              <MappingFragment StoreEntitySet="GenderInfo">
+                <ScalarProperty Name="GenName" ColumnName="GenName" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BankInfoes">
+            <EntityTypeMapping TypeName="Brank_InfomationModel.BankInfo">
+              <MappingFragment StoreEntitySet="BankInfo">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="BankCode" ColumnName="BankCode" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeeInfoes">
+            <EntityTypeMapping TypeName="Brank_InfomationModel.EmployeeInfo">
+              <MappingFragment StoreEntitySet="EmployeeInfo">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UName" ColumnName="UName" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+                <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="BankId" ColumnName="BankId" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rpt_EmployeeInfo">
+            <EntityTypeMapping TypeName="Brank_InfomationModel.Rpt_EmployeeInfo">
+              <MappingFragment StoreEntitySet="Rpt_EmployeeInfo">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+                <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+                <ScalarProperty Name="BranchName" ColumnName="BranchName" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="EmpName" ColumnName="EmpName" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

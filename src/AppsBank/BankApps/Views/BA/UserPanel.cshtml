@@ -1,0 +1,17 @@
+﻿@using BankApps.Models;
+@{
+    ViewBag.Title = "UserPanel";
+    Brank_InfomationEntities db = new Brank_InfomationEntities();
+}
+
+<h2>UserPanel</h2>
+<a href="/BA/BranchEntry">BranchEntry</a>
+@if (User.IsInRole("admin"))
+{
+    <a href="/BA/BankEntry">BankEntry</a>
+}
+
+<a href="/BA/DesignationEntry">DesignationEntry</a>
+<a href="/BA/GenderEntry">GenderEntry</a>
+<a href="/BA/EmployeeEntry">EmployeeEntry</a>
+<a href="/BA/EmployeeSearch">EmployeeSearch</a>

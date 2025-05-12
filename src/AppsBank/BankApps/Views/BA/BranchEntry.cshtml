@@ -1,0 +1,54 @@
+﻿@using BankApps.Models;
+    @{
+        ViewBag.Title = "BranchEntry";
+        Brank_InfomationEntities db = new Brank_InfomationEntities();
+    }
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/eggplant/jquery-ui.css" rel="stylesheet" />
+    <h2 style="text-align:center">Branch Entry</h2>
+    <form action="/BA/BranchEntry" enctype="multipart/form-data" method="post">
+        <div class="form-horizontal">
+            <div class="form-group">
+                <input type="hidden" name="BranchId" id="BranchId" value="@Model.BranchId" />
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4 alert alert-info">
+                            <label class="form-control">Branch Name</label>
+                            <input type="text" name="BranchName" id="BranchName" value="@Model.BranchName" placeholder="Enter Brank Name" autocomplete="off" />
+
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div style="text-align:center">
+
+                        <input style="text-align:center" type="submit" value="Save" class="btn btn-danger" />
+                    </div>
+                    </div>
+</div>
+</div>
+
+</form>
+
+<form>
+    <div class="form-horizontal">
+        <div class="form-group">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+                @foreach(var item in db.BranchInfoes)
+                {
+                    <tr>
+                        <td>@item.BranchName</td>
+                        <td><a href="/BA/BranchEntry?Id=@item.BranchId">Edit</a></td>
+                        <td><a href="/BA/delBranchEntry?Id=@item.BranchId">Delete</a></td>
+                    </tr>
+                }
+
+            </table>
+
+        </div>
+    </div>
+</form>

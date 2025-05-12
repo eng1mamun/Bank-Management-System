@@ -1,0 +1,50 @@
+﻿@using BankApps.Models;
+@{
+    ViewBag.Title = "GenderInfo";
+    Brank_InfomationEntities db = new Brank_InfomationEntities();
+}
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/eggplant/jquery-ui.css" rel="stylesheet" />
+<div class="text-danger"><center><h2>GenderInfo</h2></center></div>
+<form action="/BA/GenderEntry" enctype="multipart/form-data" method="post">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="container">
+                <input type="hidden" name="GenderId" id="GenderId" value="@Model.GenderId" />
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-4 alert alert-info">
+                        <label class="form-control">Gender Name</label>
+                        <input type="text" name="GenName" id="GenName" value="@Model.GenName" placeholder="Enter Gender Name" autocomplete="off" />
+                    </div>
+
+
+                </div>
+                <br />
+                <br />
+                <center> <input type="submit" value="Save" class="btn btn-success" /></center><br />
+            </div>
+        </div>
+    </div>
+</form>
+<form>
+    <div class="form-horizontal">
+        <div class="form-group">
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Name</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+
+                </tr>
+                @foreach (var item in db.GenderInfoes )
+                {
+                    <tr>
+                        <td>@item.GenName</td>
+                        <td><a href="/BA/GenderEntry?Id=@item.GenderId">Edit</a></td>
+                        <td><a href="/BA/delGenderEntry?Id=@item.GenderId">Delete</a></td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</form>
+

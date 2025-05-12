@@ -1,0 +1,33 @@
+﻿@using BankApps.Models;
+@{
+    ViewBag.Title = "LogIn";
+    Brank_InfomationEntities db = new Brank_InfomationEntities();
+}
+
+<h2 style="text-align:center">LogIn</h2>
+<form action="/US/LogIn" enctype="multipart/form-data" method="post">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="container">
+                <div class="row">
+                <div class="col-md-4 col-md-offset-2 alert alert-info">
+                     <label class="form-control">UserName</label>
+                 <input type="text" name="UName" id="UName"placeholder="Enter UserName" autocomplete="off" />
+                </div>
+                <div class="col-md-4 col-md-offset-2 alert alert-info">
+                     <label class="form-control">Password</label>
+                    <input type="password" name="Password" id="Password"placeholder="***" autocomplete="off" />
+                </div>
+              </div>             
+            <br />
+           <br />
+           <br />
+            <div style="text-align:center">
+             <input style="text-align:center" type="submit" value="Save" class="btn btn-danger" />
+            </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+

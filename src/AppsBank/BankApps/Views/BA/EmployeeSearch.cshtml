@@ -1,0 +1,92 @@
+﻿@using BankApps.Models;
+@{
+    ViewBag.Title = "EmployeeSearch";
+    Brank_InfomationEntities db = new Brank_InfomationEntities();
+}
+
+<h2>EmployeeSearch</h2>
+<form action="/WI/EmployeeSearch" method="get">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <div class="row">
+
+                <select type="text" name="BankId" id="BankId">
+                    <option value="0">Select a Bank..!!</option>
+                    @foreach (var item in db.BankInfoes)
+                    {
+                        <option value="@item.BankId">@item.BankName</option>
+                    }
+
+                </select>
+                </div>
+            <div class="row">
+
+                <select type="text" name="BranchId" id="BranchId">
+                    <option value="0">Select a Branch..!!</option>
+                    @foreach (var item in db.BranchInfoes)
+                    {
+                        <option value="@item.BranchId">@item.BranchName</option>
+                    }
+
+                </select>
+            </div>
+            <div class="row">
+
+                <select type="text" name="DesignationId" id="DesignationId">
+                    <option value="0">Select a Designation..!!</option>
+                    @foreach (var item in db.DesignationInfoes)
+                    {
+                        <option value="@item.DesignationId">@item.DesName</option>
+                    }
+
+                </select>
+            </div>
+    
+                <center> <input type="button" id="Search" name="Search" value="Search" class="btn btn-success" /></center><br />
+           
+            <table class="table table-bordered table-striped" name="Employee" id="EmployeeTable"></table>
+            </div>
+</div>
+
+</form>
+<script src="~/Scripts/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#Search').click(function () {
+            $('#EmployeeTable').empty();
+            if ($('#BankId').val() == 0) {
+                alert('Bank selection is required');
+                return false();
+            }
+            if ($('#BranchId').val() == 0) {
+                alert('Branch selection is required');
+                return false();
+            }
+            if ($('#DesignationId').val() == 0) {
+                alert('Designation selection is required');
+                return false();
+            }
+          
+            var row2 = '<tr><th>serial</th><th>Name</th><th>Age</th><th>Salary</th></tr>';
+            $('#EmployeeTable').append(row2);
+            $.get("/BA/GetEmployeeAPI", { BId: $('#BankId').val(), BrId: $('#BranchId').val(), DId: $('#DesignationId').val() }, function (data) {
+                var sl = 1;
+                $.each(data, function (index, row) {
+                    //alert(row[index][1]);
+                    var row1 = '<tr>' + '<th scope="row">' + sl + '</th><td>' + row.EmpName + '</td>' + '<td>' + row.Age + '</td>' + '<td>' + row.Salary + '</td>' + '</tr>';
+                    $('#EmployeeTable').append(row1);
+                    sl++;
+                    //return false;
+                });
+
+
+            });
+          
+        });
+    });
+</script>
+ 
+
+
+
+            

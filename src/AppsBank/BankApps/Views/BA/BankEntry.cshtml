@@ -1,0 +1,109 @@
+﻿@using BankApps.Models;
+@{
+    ViewBag.Title = "BankEntry";
+    Brank_InfomationEntities db = new Brank_InfomationEntities();
+}
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.4/themes/eggplant/jquery-ui.css" rel="stylesheet" />
+
+<h2 style="text-align:center">Bank Entry</h2>
+<form action="/BA/BankEntry" enctype="multipart/form-data" method="post">
+    <div class="form-horizontal">
+        <div class="form-group">
+            <input type="hidden" name="BankId" id="BankId" value="@Model.BankId" />
+            <div class="container">
+                <div class="row">
+                <div class="col-md-4 col-md-offset-2 alert alert-info">
+                    <label class="form-control">Bank Name</label>
+                    <input type="text" name="BankName" id="BankName" value="@Model.BankName" placeholder="Enter Bank Name" autocomplete="off"/>
+
+                </div>
+                <div class="col-md-4 col-md-offset-2 alert alert-info">
+                    <label class="form-control">Bank Code</label>
+                    <input type="text" name="BankCode" id="BankCode" value="@Model.BankCode" placeholder="Enter Bank Code" autocomplete="off" />
+
+                </div>
+               
+                </div>
+                <div class="col-md-4 col-md-offset-2 alert alert-info">
+                    <label class="form-control">Phone</label>
+                    <input type="text" name="Phone" id="Phone" value="@Model.Phone" placeholder="Enter  Phone" autocomplete="off" />
+
+                </div>
+                <div class="col-md-4 col-md-offset-2 alert alert-info">
+                    <label class="form-control">Email</label>
+                    <input type="email" name="Email" id="Email" value="@Model.Email" placeholder="Enter  Email" autocomplete="off" />
+
+                </div>
+                <div class="col-md-4 col-md-offset-2 alert alert-info">
+                    <label class="form-control">Image</label>
+                    <input type="file" name="Image" id="Image"/>
+
+                </div>
+                <div class="col-md-4 col-md-offset-2 alert alert-info">
+                    <label class="form-control">Bank foundation Date</label>
+                    <input type="text" name="Date" id="Date" value="@Model.Date" placeholder="Enter Bank Date" autocomplete="off" />
+
+                    </div>
+                <br />
+                <br />
+                <br/>
+                <br/>
+               <div style="text-align:center">
+                <input style="text-align:center" type="submit" value="Save" class="btn btn-danger" />
+                </div>
+                </div>
+        </div>
+    </div>
+</form>
+
+
+<form>
+    <div class="form-horizontal">
+        <div class="form-group">
+            <table class="table table-bordered table-striped">
+             <tr>
+                 <th>Name</th>
+                 <th>Code</th>
+                 <th>Phone</th>
+                 <th>Email</th>
+                 <th>Image</th>
+                 <th>Date</th>
+                 <th>Edit</th>
+                 <th>Delete</th>
+             </tr>
+                @foreach(var item in db.BankInfoes)
+                {
+                    <tr>
+                        <td>@item.BankName</td>
+                        <td>@item.BankCode</td>
+                        <td>@item.Phone</td>
+                        <td>@item.Email</td>
+                        <td>@item.Image</td>
+                        <td>@item.Date</td>
+                       
+                        <td><a href="/BA/BankEntry?id=@item.BankId">Edit</a></td>
+                        <td><a href="/BA/delBankEntry?id=@item.BankId">Delete</a></td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <script src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#Date').datepicker({
+                changerYear: true,
+                changerMonth: true,
+                dateFormat: 'dd/mm/yy',
+                altField: $(this).val(),
+                yearRange:'-150:+0'
+                });
+        });
+
+    </script>
+
+}
